@@ -1,0 +1,18 @@
+		Welcome
+
+ Bill Number : 2509
+ Customer Name : Omkar Koli
+ Phone Number : 9876543212
+ Email_ID : lorem0701@gmail.com
+========================================
+ Products		Quantity		Price
+========================================
+ Rice		2		160
+ Face Cream		2		260
+ Glue		2		80
+----------------------------------------
+ Grocery Tax			Rs.   8.0
+ Cosmetic Tax			Rs.   26.0
+ Stationary Tax			Rs.   16.0
+----------------------------------------
+ Total Bill			 Rs. 550.0

@@ -4,6 +4,7 @@ from tkinter import messagebox
 from ctypes.wintypes import MSG
 import smtplib
 from email.message import EmailMessage
+import mysql.connector
 
 class Bill_App:
     def __init__(self,root):
@@ -278,6 +279,11 @@ class Bill_App:
         Exit_btn = Button(btn_F, text="Exit",command=self.Exit_app, bg="cadetblue", fg="black", pady=15, width=10, bd=2,
                           font="arial 15 bold").grid(row=0, column=3, padx=5, pady=5)
         self.welcome_bill()
+        frame = Frame(self.root, borderwidth=6, bg="black", relief=GROOVE)
+        frame.pack(side=RIGHT, anchor="n")
+
+        b1=Button(frame, fg="black", text="Data",command=self.add_data)
+        b1.pack()
 
     def total(self):
 
@@ -527,6 +533,51 @@ class Bill_App:
         
             smtp.send_message(msg)
 
+
+    def add_data(self):
+        try:
+            conn=mysql.connector.connect(host='localhost',user='root',password='Omkar@123', database='sys')
+            my_cursor=conn.cursor()
+            my_cursor.execute('insert into table8 values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',(
+                                                                                                                                                    self.c_phon.get(),
+                                                                                                                                                    self.c_name.get(),
+                                                                                                                                                    self.email_id.get(),
+                                                                                                                                                    self.rice.get(),
+                                                                                                                                                    self.flour.get(),
+                                                                                                                                                    self.daal.get(),
+                                                                                                                                                    self.food_oil.get(),
+                                                                                                                                                    self.wheat.get(),
+                                                                                                                                                    self.sugar.get(),
+                                                                                                                                                    self.soap.get(),
+                                                                                                                                                    self.face_cream.get(),
+                                                                                                                                                    self.face_wash.get(),
+                                                                                                                                                    self.shampoo.get(),
+                                                                                                                                                    self.conditoner.get(),
+                                                                                                                                                    self.gell.get(),
+                                                                                                                                                    self.book.get(),
+                                                                                                                                                    self.scissors.get(),
+                                                                                                                                                    self.glue.get(),
+                                                                                                                                                    self.sketch_pen.get(),
+                                                                                                                                                    self.sticky_notes.get(),
+                                                                                                                                                    self.pen.get(),
+                                                                                                                                                    self.cosmetic_price. get(),
+                                                                                                                                                    self.grocery_price. get(),
+                                                                                                                                                    self.stationary_price. get(),
+                                                                                                                                                    self.cosmetic_tax. get(),
+                                                                                                                                                    self.grocery_tax. get(),
+                                                                                                                                                    self.stationary_tax. get()    
+                                                                                                                                                   
+                                                                                                                                                    
+
+
+                                                                                                                                                ))
+            conn.commit()
+            #self.fetch_data()
+            conn.close()
+            messagebox.showinfo('Success','data has been recorded',parent=self.root)
+        except Exception as es:
+            messagebox.showerror('Error',f'Due To:{str(es)}',parent=self.root)
+            
 root=Tk()
 obj=Bill_App(root)
 root.mainloop()
